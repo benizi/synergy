@@ -87,6 +87,7 @@ Server::Server(
 	m_relativeMoves(false),
 	m_keyboardBroadcasting(false),
 	m_lockedToScreen(false),
+	m_enableScrollLock(false),
 	m_screen(screen),
 	m_events(events),
 	m_sendFileThread(NULL),
@@ -289,7 +290,7 @@ Server::setConfig(const Config& config)
 	// we will unfortunately generate a warning.  if the user has
 	// configured a LockCursorToScreenAction then we don't add
 	// ScrollLock as a hotkey.
-	if (!m_config->hasLockToScreenAction()) {
+	if (!m_config->hasLockToScreenAction() && !m_enableScrollLock) {
 		IPlatformScreen::KeyInfo* key =
 			IPlatformScreen::KeyInfo::alloc(kKeyScrollLock, 0, 0, 0);
 		InputFilter::Rule rule(new InputFilter::KeystrokeCondition(m_events, key));
@@ -1183,6 +1184,9 @@ Server::processOptions()
 			if (m_enableClipboard == false) {
 				LOG((CLOG_NOTE "clipboard sharing is disabled"));
 			}
+		}
+		else if (id == kOptionEnableScrollLock) {
+			m_enableScrollLock = (value != 0);
 		}
 	}
 	if (m_relativeMoves && !newRelativeMoves) {

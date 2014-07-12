@@ -924,6 +924,10 @@ Config::readSectionScreens(ConfigReadContext& s)
 				addOption(screen, kOptionScreenPreserveFocus,
 					s.parseBoolean(value));
 			}
+			else if (name == "enableScrollLock") {
+				addOption(screen, kOptionEnableScrollLock,
+					s.parseBoolean(value));
+			}
 			else {
 				// unknown argument
 				throw XConfigRead(s, "unknown argument \"%{1}\"", name);
@@ -1383,6 +1387,9 @@ Config::getOptionName(OptionID id)
 	if (id == kOptionClipboardSharing) {
 		return "clipboardSharing";
 	}
+	if (id == kOptionEnableScrollLock) {
+		return "enableScrollLock";
+	}
 	return NULL;
 }
 
@@ -1400,7 +1407,8 @@ Config::getOptionValue(OptionID id, OptionValue value)
 		id == kOptionRelativeMouseMoves ||
 		id == kOptionWin32KeepForeground ||
 		id == kOptionScreenPreserveFocus ||
-		id == kOptionClipboardSharing) {
+		id == kOptionClipboardSharing ||
+		id == kOptionEnableScrollLock) {
 		return (value != 0) ? "true" : "false";
 	}
 	if (id == kOptionModifierMapForShift ||

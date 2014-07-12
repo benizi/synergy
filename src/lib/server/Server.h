@@ -459,6 +459,9 @@ private:
     // screen locking (former scroll lock)
     bool                m_lockedToScreen;
 
+    // enable scroll lock key
+    bool                m_enableScrollLock;
+
     // server screen
     synergy::Screen*    m_screen;
 
