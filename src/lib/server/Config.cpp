@@ -920,6 +920,10 @@ CConfig::readSectionScreens(CConfigReadContext& s)
 				addOption(screen, kOptionScreenPreserveFocus,
 					s.parseBoolean(value));
 			}
+			else if (name == "enableScrollLock") {
+				addOption(screen, kOptionEnableScrollLock,
+					s.parseBoolean(value));
+			}
 			else {
 				// unknown argument
 				throw XConfigRead(s, "unknown argument \"%{1}\"", name);
@@ -1376,6 +1380,9 @@ CConfig::getOptionName(OptionID id)
 	if (id == kOptionScreenPreserveFocus) {
 		return "preserveFocus";
 	}
+	if (id == kOptionEnableScrollLock) {
+		return "enableScrollLock";
+	}
 	return NULL;
 }
 
@@ -1392,7 +1399,8 @@ CConfig::getOptionValue(OptionID id, OptionValue value)
 		id == kOptionXTestXineramaUnaware ||
 		id == kOptionRelativeMouseMoves ||
 		id == kOptionWin32KeepForeground ||
-		id == kOptionScreenPreserveFocus) {
+		id == kOptionScreenPreserveFocus ||
+		id == kOptionEnableScrollLock) {
 		return (value != 0) ? "true" : "false";
 	}
 	if (id == kOptionModifierMapForShift ||

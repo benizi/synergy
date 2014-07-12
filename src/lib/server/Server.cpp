@@ -81,6 +81,7 @@ CServer::CServer(
 	m_relativeMoves(false),
 	m_keyboardBroadcasting(false),
 	m_lockedToScreen(false),
+	m_enableScrollLock(false),
 	m_screen(screen),
 	m_events(events),
 	m_sendFileThread(NULL),
@@ -282,7 +283,7 @@ CServer::setConfig(const CConfig& config)
 	// we will unfortunately generate a warning.  if the user has
 	// configured a CLockCursorToScreenAction then we don't add
 	// ScrollLock as a hotkey.
-	if (!m_config->hasLockToScreenAction()) {
+	if (!m_config->hasLockToScreenAction() && !m_enableScrollLock) {
 		IPlatformScreen::CKeyInfo* key =
 			IPlatformScreen::CKeyInfo::alloc(kKeyScrollLock, 0, 0, 0);
 		CInputFilter::CRule rule(new CInputFilter::CKeystrokeCondition(m_events, key));
@@ -1160,6 +1161,9 @@ CServer::processOptions()
 		}
 		else if (id == kOptionRelativeMouseMoves) {
 			newRelativeMoves = (value != 0);
+		}
+		else if (id == kOptionEnableScrollLock) {
+			m_enableScrollLock = (value != 0);
 		}
 	}
 	if (m_relativeMoves && !newRelativeMoves) {
