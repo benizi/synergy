@@ -287,6 +287,9 @@ static const KeyID		kKeyBrightnessUp	= 0xE0B9;
 static const KeyID		kKeyMissionControl	= 0xE0C0;
 static const KeyID		kKeyLaunchpad		= 0xE0C1;
 
+// wtf, synergy...
+static const KeyID		kKeyAudioPause		= 0xFF31;
+
 //@}
 
 struct KeyNameMapEntry {

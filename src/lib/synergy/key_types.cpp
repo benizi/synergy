@@ -29,6 +29,7 @@ const KeyNameMapEntry kKeyNameMap[] = {
     { "AudioDown",        kKeyAudioDown },
     { "AudioMute",        kKeyAudioMute },
     { "AudioNext",        kKeyAudioNext },
+    { "AudioPause",       kKeyAudioPause },
     { "AudioPlay",        kKeyAudioPlay },
     { "AudioPrev",        kKeyAudioPrev },
     { "AudioStop",        kKeyAudioStop },
