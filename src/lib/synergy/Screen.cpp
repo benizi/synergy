@@ -187,6 +187,12 @@ Screen::screensaver(bool activate)
 }
 
 void
+Screen::screenblank()
+{
+    // noop by default
+}
+
+void
 Screen::keyDown(KeyID id, KeyModifierMask mask, KeyButton button)
 {
     // check for ctrl+alt+del emulation

@@ -113,6 +113,12 @@ public:
     */
     void                screensaver(bool activate);
 
+    //! Activate/deactivate display power management
+    /*!
+    Forcibly activates DPMS-based screen blanking.
+    */
+    void                screenblank();
+
     //! Notify of key press
     /*!
     Synthesize key events to generate a press of key \c id.  If possible

@@ -1270,6 +1270,12 @@ Config::parseAction(ConfigReadContext& s,
 		action = new InputFilter::KeyboardBroadcastAction(m_events, mode, screens);
 	}
 
+	else if (name == "screenBlank") {
+		if (args.size() > 0) {
+			throw XConfigRead(s, "syntax for action: screenBlank");
+		}
+	}
+
 	else {
 		throw XConfigRead(s, "unknown action argument \"%{1}\"", name);
 	}

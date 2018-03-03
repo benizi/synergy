@@ -442,6 +442,25 @@ XWindowsScreen::screensaver(bool activate)
 }
 
 void
+XWindowsScreen::screenblank()
+{
+	#if HAVE_X11_EXTENSIONS_DPMS_H
+	int major, minor;
+	CARD16 level;
+	BOOL enabled;
+	if (DPMSQueryExtension(m_display, &major, &minor) &&
+	    DPMSCapable(m_display) &&
+	    DPMSInfo(m_display, &level, &enabled))
+	{
+		if (!enabled)
+			DPMSEnable(m_display);
+		if (level != DPMSModeSuspend)
+			DPMSForceLevel(m_display, DPMSModeSuspend);
+	}
+	#endif
+}
+
+void
 XWindowsScreen::resetOptions()
 {
 	m_xtestIsXineramaUnaware = true;
