@@ -80,7 +80,7 @@ public:
     virtual void        openScreensaver(bool notify);
     virtual void        closeScreensaver();
     virtual void        screensaver(bool activate);
-    virtual void        screenblank(bool activate);
+    virtual void        screenblank();
     virtual void        resetOptions();
     virtual void        setOptions(const OptionsList& options);
     virtual void        setSequenceNumber(UInt32);
